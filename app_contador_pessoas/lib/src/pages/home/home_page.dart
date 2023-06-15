@@ -13,15 +13,18 @@ class _HomePageState extends State<HomePage> {
 
   void decrement() {
     setState(() {
-      count < 1 ? null : count--;
+      count--;
     });
   }
 
   void increment() {
     setState(() {
-      count++;
+      isFull ? null : count++;
     });
   }
+
+  bool get isEmpty => count == 0;
+  bool get isFull => count == 20;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +42,14 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Pode Entrar!!',
+              isFull ? 'Lotado' : 'Pode Entrar!!',
               style: text01(),
             ),
             Padding(
               padding: const EdgeInsets.all(40.0),
               child: Text(
                 '$count',
-                style: text02(),
+                style: text02(isFull),
               ),
             ),
             Row(
@@ -54,8 +57,8 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  style: buttonStyle(),
-                  onPressed: decrement,
+                  style: buttonStyleExit(isEmpty: isEmpty),
+                  onPressed: isEmpty ? null : decrement,
                   child: Text(
                     'Saiu',
                     style: textButtonStyle(),
@@ -65,8 +68,8 @@ class _HomePageState extends State<HomePage> {
                   width: 32,
                 ),
                 ElevatedButton(
-                  style: buttonStyle(),
-                  onPressed: increment,
+                  style: buttonStyleEnter(isFull: isFull),
+                  onPressed: isFull ? null : increment,
                   child: Text(
                     'Entrou',
                     style: textButtonStyle(),

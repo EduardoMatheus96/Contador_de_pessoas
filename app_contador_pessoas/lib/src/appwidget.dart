@@ -11,6 +11,9 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.grey.withOpacity(0.4))),
       ),
       debugShowCheckedModeBanner: false,
       home: const HomePage(),

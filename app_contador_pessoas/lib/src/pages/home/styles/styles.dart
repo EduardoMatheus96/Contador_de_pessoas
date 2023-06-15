@@ -8,16 +8,27 @@ TextStyle text01() {
   );
 }
 
-TextStyle text02() {
-  return const TextStyle(
+TextStyle text02(bool isFull) {
+  return TextStyle(
     fontSize: 100,
-    color: Colors.white,
+    color: isFull ? Colors.red : Colors.white,
   );
 }
 
-ButtonStyle buttonStyle() {
+ButtonStyle buttonStyleExit({bool? isEmpty}) {
   return ElevatedButton.styleFrom(
-    backgroundColor: Colors.white,
+    backgroundColor: isEmpty! ? Colors.white.withOpacity(0.2) : Colors.white,
+    fixedSize: const Size(100, 100),
+    foregroundColor: Colors.black,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(24),
+    ),
+  );
+}
+
+ButtonStyle buttonStyleEnter({bool? isFull}) {
+  return ElevatedButton.styleFrom(
+    backgroundColor: isFull! ? Colors.white.withOpacity(0.2) : Colors.white,
     fixedSize: const Size(100, 100),
     foregroundColor: Colors.black,
     shape: RoundedRectangleBorder(
