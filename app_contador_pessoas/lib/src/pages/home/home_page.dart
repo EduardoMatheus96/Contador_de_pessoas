@@ -1,12 +1,27 @@
-import 'package:app_contador_pessoas/src/pages/home/styles.dart';
+import 'package:app_contador_pessoas/src/pages/home/styles/styles.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  void decrement() {}
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-  void increment() {}
+class _HomePageState extends State<HomePage> {
+  int count = 0;
+
+  void decrement() {
+    setState(() {
+      count < 1 ? null : count--;
+    });
+  }
+
+  void increment() {
+    setState(() {
+      count++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +45,7 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(40.0),
               child: Text(
-                '0',
+                '$count',
                 style: text02(),
               ),
             ),
